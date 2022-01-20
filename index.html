@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <!-- style -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Frontend Mentor | Tip calculator app</title>
+  </head>
+  <body>
+    <main>
+      <h1>
+        SPLT <br />
+        TTER
+      </h1>
+      <div class="container">
+        <!-- Inputs -->
+        <form action="">
+          <!-- Bill input -->
+          <label
+            >Bill
+            <div class="input-style">
+              <img src="images/icon-dollar.svg" alt="" />
+              <input type="number" id="bill" min="1" placeholder="0" /></div
+          ></label>
+
+          <!--  -->
+          <!-- Tips  -->
+          <div id="tips">
+            <span>Select Tip % </span>
+            <label class="radio">
+              <input type="radio" name="tips" class="radio-input" />
+              <div class="radio-new-shape" data-tip-percent="5%"></div>
+            </label>
+            <label class="radio">
+              <input type="radio" name="tips" class="radio-input" />
+              <div class="radio-new-shape" data-tip-percent="10%"></div>
+            </label>
+            <label class="radio">
+              <input type="radio" name="tips" class="radio-input" />
+              <div class="radio-new-shape" data-tip-percent="15%"></div>
+            </label>
+            <label class="radio">
+              <input type="radio" name="tips" class="radio-input" />
+              <div class="radio-new-shape" data-tip-percent="25%"></div>
+            </label>
+            <label class="radio">
+              <input type="radio" name="tips" class="radio-input" />
+              <div class="radio-new-shape" data-tip-percent="50%"></div>
+            </label>
+            <label id="toggle-custom-tip" class="radio">
+              <input type="input" name="tips" class="radio-input" />
+              <div
+                class="radio-new-shape custom-tip show"
+                data-tip-percent="Custom"
+              ></div>
+              <input type="number" name="tips" class="custom-tip-input hide" />
+            </label>
+          </div>
+
+          <!--  -->
+          <!-- People number -->
+          <label
+            >Number of People
+            <div class="input-style">
+              <img src="images/icon-person.svg" alt="" />
+              <input
+                type="number"
+                min="1"
+                id="people-num"
+                placeholder="0"
+              /></div
+          ></label>
+
+          <!--  -->
+        </form>
+        <!--  -->
+        <!-- Results and reset -->
+        <div id="result">
+          <!-- Tip amount  -->
+          <div id="tip-amount" class="result-output-style">
+            <h1>Tip Amount<span>/ person</span></h1>
+            <h2 id="tip-amout-result">$0.00</h2>
+          </div>
+          <!--  -->
+          <!-- Total -->
+          <div id="total" class="result-output-style">
+            <h1>Total <span>/ person</span></h1>
+            <h2 id="total-result">$0.00</h2>
+          </div>
+          <!--  -->
+          <!-- Reset button -->
+          <button id="reset" disabled>RESET</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+    <!-- JS -->
+    <script src="index.js"></script>
+  </body>
+</html>
