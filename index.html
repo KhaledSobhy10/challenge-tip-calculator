@@ -27,72 +27,71 @@
   </head>
   <body>
     <main>
-      <h1>
-        SPLT <br />
-        TTER
-      </h1>
-      <div class="container">
-        <!-- Inputs -->
-        <form action="">
-          <!-- Bill input -->
-          <label
-            >Bill
-            <div class="input-style">
-              <img src="images/icon-dollar.svg" alt="" />
-              <input type="number" id="bill" min="1" placeholder="0" /></div
-          ></label>
+      <header>
+        <h1>
+          S P L T <br />
+          T T E R
+        </h1>
+      </header>
 
-          <!--  -->
-          <!-- Tips  -->
+      <div class="container">
+        <!-- Inputs form-->
+        <form>
+          <!-- Bill input -->
+          <label>
+            Bill
+            <span class="input-style">
+              <img src="images/icon-dollar.svg" alt="" />
+              <input type="number" id="bill" min="1" placeholder="0" />
+            </span>
+          </label>
+          <!-- End Bill input  -->
+
+          <!-- Tips radio groups -->
           <div id="tips">
             <span>Select Tip % </span>
             <label class="radio">
               <input type="radio" name="tips" class="radio-input" />
-              <div class="radio-new-shape" data-tip-percent="5%"></div>
+              <span class="radio-new-shape" data-tip-percent="5%"></span>
             </label>
             <label class="radio">
               <input type="radio" name="tips" class="radio-input" />
-              <div class="radio-new-shape" data-tip-percent="10%"></div>
+              <span class="radio-new-shape" data-tip-percent="10%"></span>
             </label>
             <label class="radio">
               <input type="radio" name="tips" class="radio-input" />
-              <div class="radio-new-shape" data-tip-percent="15%"></div>
+              <span class="radio-new-shape" data-tip-percent="15%"></span>
             </label>
             <label class="radio">
               <input type="radio" name="tips" class="radio-input" />
-              <div class="radio-new-shape" data-tip-percent="25%"></div>
+              <span class="radio-new-shape" data-tip-percent="25%"></span>
             </label>
             <label class="radio">
               <input type="radio" name="tips" class="radio-input" />
-              <div class="radio-new-shape" data-tip-percent="50%"></div>
+              <span class="radio-new-shape" data-tip-percent="50%"></span>
             </label>
             <label id="toggle-custom-tip" class="radio">
-              <input type="input" name="tips" class="radio-input" />
-              <div
+              <input type="radio" name="tips" class="radio-input" />
+              <span
                 class="radio-new-shape custom-tip show"
                 data-tip-percent="Custom"
-              ></div>
-              <input type="number" name="tips" class="custom-tip-input hide" />
+              ></span>
             </label>
           </div>
+          <!-- End Tips radio groups  -->
 
-          <!--  -->
-          <!-- People number -->
-          <label
-            >Number of People
-            <div class="input-style">
-              <img src="images/icon-person.svg" alt="" />
-              <input
-                type="number"
-                min="1"
-                id="people-num"
-                placeholder="0"
-              /></div
-          ></label>
-
-          <!--  -->
+          <!-- People number input-->
+          <label>
+            Number of People
+            <span class="input-style">
+              <img src="images/icon-person.svg" />
+              <input type="number" min="1" id="people-num" placeholder="0" />
+            </span>
+          </label>
+          <!-- End People number input-->
         </form>
-        <!--  -->
+        <!-- End input form -->
+
         <!-- Results and reset -->
         <div id="result">
           <!-- Tip amount  -->
@@ -100,24 +99,19 @@
             <h1>Tip Amount<span>/ person</span></h1>
             <h2 id="tip-amout-result">$0.00</h2>
           </div>
-          <!--  -->
+          <!-- End Tip amount -->
           <!-- Total -->
           <div id="total" class="result-output-style">
             <h1>Total <span>/ person</span></h1>
             <h2 id="total-result">$0.00</h2>
           </div>
-          <!--  -->
+          <!-- End Total -->
           <!-- Reset button -->
           <button id="reset" disabled>RESET</button>
         </div>
+        <!-- End Results and reset -->
       </div>
     </main>
-
-    <!-- <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div> -->
-    <!-- JS -->
     <script src="index.js"></script>
   </body>
 </html>

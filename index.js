@@ -10,23 +10,38 @@ let inputsData = {
   bill: 0.0,
   tip: undefined,
   peopleNum: 0.0,
+  reset: function () {
+    this.bill = 0.0;
+    this.tip = undefined;
+    this.peopleNum = 0.0;
+  },
 };
 
+// false >> should show button with custom text else should show input [number]
 let toggleWork = false;
 
+//Show input when custom button clicked
 const handleToggle = () => {
+  const inputELement = toggleCustomTipElement.querySelector("input");
+  const customRadioElement = toggleCustomTipElement.querySelector("span");
+
   if (!toggleWork) {
     for (const iterator of radioInputElements)
       if (iterator.checked) iterator.checked = false;
+
+    inputELement.setAttribute("type", "number");
+    inputELement.className = "custom-tip-input";
+    customRadioElement.classList.replace("show", "hide");
+  } else {
+    inputELement.setAttribute("type", "radio");
+    inputELement.className = "radio-input";
+    customRadioElement.classList.replace("hide", "show");
   }
 
-  const hidded = toggleCustomTipElement.querySelector(".hide");
-  const shown = toggleCustomTipElement.querySelector(".show");
-  hidded.classList.replace("hide", "show");
-  shown.classList.replace("show", "hide");
   toggleWork = !toggleWork;
 };
 
+//check if all inputs have data
 const checkDataCompleted = () => {
   return (
     inputsData.bill > 0 &&
@@ -36,6 +51,7 @@ const checkDataCompleted = () => {
   );
 };
 
+//load data to results elements
 const loadResults = () => {
   if (checkDataCompleted()) {
     const tipAmoutPerPerson = Number.parseFloat(
@@ -51,40 +67,49 @@ const loadResults = () => {
   }
 };
 
+//show error when number of people < 0
 const showInvalidNumberMessage = () => {
   peopleNumElement.parentElement.classList.add("invalidNumber");
 };
 
+//hide error when number of people > 0
 const hideInvalidNumberMessage = () => {
   peopleNumElement.parentElement.classList.remove("invalidNumber");
 };
 
 // Attach listeber to custom tip button
 toggleCustomTipElement.addEventListener("click", (e) => {
-  resetButton.disabled = false;
-  if (e.target === toggleCustomTipElement.getElementsByTagName("input")[0]) {
-    customAsInput = toggleCustomTipElement.querySelector(".custom-tip-input");
-    customAsInput.addEventListener("input", (e) => {
-      inputsData.tip = Number.parseFloat(e.target.value);
-      loadResults();
-    });
+  let input = toggleCustomTipElement.querySelector("input");
+  if (e.target === input && input.type === "radio") {
+    resetButton.disabled = false;
     handleToggle();
+    input = toggleCustomTipElement.querySelector(".custom-tip-input");
+    if (input) {
+      input.addEventListener("input", (e) => {
+        inputsData.tip = Number.parseFloat(e.target.value);
+        loadResults();
+      });
+    }
   }
 });
 
-// Attach listner to radios button
-for (const iterator of radioInputElements) {
-  iterator.addEventListener("change", (e) => {
-    if (toggleWork) {
-      handleToggle();
-    }
-    const currentTipPercent = iterator.parentElement
-      .querySelector(".radio-new-shape")
-      .dataset.tipPercent.replace("%", "");
+//Extract percent value from radio element
+const getPercentFromRadio = (parentElement) =>
+  parentElement
+    .querySelector(".radio-new-shape")
+    .dataset.tipPercent.replace("%", "");
 
-    inputsData.tip = Number.parseFloat(currentTipPercent);
-    loadResults();
-  });
+// Attach listner to radios button if not toggle button (custom)
+for (const iterator of radioInputElements) {
+  if (iterator !== toggleCustomTipElement.querySelector("input")) {
+    iterator.addEventListener("change", (e) => {
+      if (toggleWork) handleToggle();
+      inputsData.tip = Number.parseFloat(
+        getPercentFromRadio(iterator.parentElement)
+      );
+      loadResults();
+    });
+  }
 }
 
 billElement.addEventListener("input", (e) => {
@@ -101,11 +126,7 @@ peopleNumElement.addEventListener("input", (e) => {
   else showInvalidNumberMessage();
 });
 
-resetButton.addEventListener("click", (e) => {
-  resetButton.disabled = true;
-  inputsData = {};
-  billElement.value = "";
-  peopleNumElement.value = "";
+const resetTipsRadioButtons = () => {
   if (toggleWork) {
     toggleCustomTipElement.querySelector(".custom-tip-input").value = "";
     handleToggle();
@@ -114,6 +135,22 @@ resetButton.addEventListener("click", (e) => {
       if (iterator.checked) iterator.checked = false;
     }
   }
+};
+
+const resetResultsElements = () => {
   tipAmoutResultElement.textContent = "$0.00";
   totalResultElement.textContent = "$0.00";
+};
+
+const resetInputsElement = () => {
+  billElement.value = "";
+  peopleNumElement.value = "";
+};
+
+resetButton.addEventListener("click", (e) => {
+  resetButton.disabled = true;
+  resetTipsRadioButtons();
+  resetResultsElements();
+  resetInputsElement();
+  inputsData.reset();
 });
